@@ -1,1 +1,1 @@
-"epic mail" 
+epic mail is a wonderful mailing app
