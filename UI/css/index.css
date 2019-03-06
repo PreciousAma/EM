@@ -1,0 +1,129 @@
+*{
+    padding: 0;
+    margin: 0;  
+}
+body{
+    background-color: skyblue;
+    color: white;
+}
+/*styling for singup heading*/
+#heading{ 
+    text-align: center;
+    font-family:  cursive; 
+    margin:20px 40px 0px;
+    font-size: 36px;
+    letter-spacing: 1.5px;
+    min-width: 358px;
+}
+/*container for inputs on the signing page*/
+#wrapper{
+    width: 70%;
+    border: solid 1px transparent;
+    margin: 10px auto;
+    height: 480px;
+    padding-top: 40px;
+}
+/*styling for input elements with class inputs*/
+.inputs{
+    display: block;
+    margin: 20px auto;
+    width: 320px;
+    height: 40px;
+    border: solid 1px transparent;
+    border-radius: 10px 0px;
+    border-bottom: 2px solid rgb(134, 139, 235);
+    outline: none;
+    font-size: 14px;
+    padding-left:  20px;
+    font-weight: bold;
+    color: rgb(134, 139, 235);
+} 
+.inputs::placeholder{
+    color: rgb(134, 139, 235);
+}
+.inputs:hover, #wrapper .inputs:focus{
+    transform: translateY(2px);
+   border-bottom: 2px solid rgb(196, 134, 235);
+    transition: 0.5s;
+}
+/*container for signup agreement*/
+#agreement-wrapper{
+    display: block;
+margin: 0px auto;
+    width: 390px;
+}
+/*styling for all buttons*/
+button{
+    display: block;
+    margin: 18px auto;
+    width: 120px;
+    height: 40px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid  transparent;
+    font-family: 'Georgia', cursive; 
+    letter-spacing: 1.5px;
+    color: white;
+    background-color: rgb(134, 139, 235);
+}
+button:hover, button:focus{
+    transform: translateY(2px);
+    transition: 0.5s;
+    background-color: rgb(196, 134, 235);
+}
+/*content wrapper for inputs on signing page*/
+#content-wrapper{
+    height: 320px;
+    margin: 0px auto;
+    width: 80%;
+}
+/*styling for singup heading*/
+#epic-head{
+    text-align: center;
+    font-family:  cursive; 
+    margin:150px 40px 0px;
+    font-size: 36px;
+    letter-spacing: 1.5px; 
+}
+/*styling for form element on signin page*/
+#login-form{
+    margin-top: 120px; 
+}
+/*styling for forgot-password and don't have an account*/
+.forgot-pass{
+    text-align: center;
+    padding: 10px;
+    position: relative;
+}
+.forgot-pass-container{
+    position: absolute;
+    display: none;
+    box-sizing: border-box;
+    padding-top: 20px;
+    top: -206px;
+    left:135.5px; 
+    width: 500px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,1);
+} 
+.popup-toggle{
+    display: block; 
+} 
+.forgot-pass-container button{
+    display: inline-block;
+    margin-top: 0;
+}
+
+.forgot-pass-container::after{
+    content: "";
+    display: block;
+    position: absolute;
+    border:15px solid transparent ;
+    border-top-color: rgba(0,0,0,1);
+    bottom: -30px;
+    left: 50%;
+}
+.forgot-pass-container p{
+    font-family:  cursive; 
+}
