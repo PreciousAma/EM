@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>Epic Login</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width">
+        <link href="css/index.css" type="text/css"  rel="stylesheet">
+	</head>
+ 
+	<body>
+        <div id="content-wrapper">
+        <h1 id="epic-head">EPIC LOGIN</h1>
+        <form id="login-form" action="user.html">  
+        <input type="text" name="username" placeholder="Username" value="" required class="inputs" maxlength="24" id="username">
+        <input type="password" name="pass" placeholder="Password" required class="inputs" id="password">
+        <button type="submit" id="login">Login</button> 
+           </form>
+            <div class="forgot-pass" ><a href="signup.html" title="Click to open an account">Don't have an account?</a></div>
+        <div class="forgot-pass" id="forget-pass-wrapper">
+            <a href="" title="Click to reset password">Forgot password?</a>
+              <div class="forgot-pass-container"> 
+                  <p>A rest link would be sent to your phone number</p>
+                  <form>
+                      <input type="tel" name="phone" placeholder="phone  +234XXXXXXXXXX" value="" required class="inputs" min="9" id="reset-sent-to">
+                      <button type="submit">Reset</button>
+                    <button type="button">Cancel</button>
+                </form>
+            </div> 
+            </div>  
+            </div>
+	</body>
+    <script src="js/login.js" type="text/javascript"></script>
