@@ -1,0 +1,29 @@
+{
+  "name": "epic",
+  "version": "1.0.0",
+  "description": "the app is used to send and receive mail",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "PreciousAma.github.io"
+  },
+  "keywords": [
+    "mail",
+    "email"
+  ],
+  "author": "Precious Chilaka",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "mocha": "^6.0.2"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

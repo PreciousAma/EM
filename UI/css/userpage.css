@@ -338,3 +338,14 @@ app-active{
     background-color: rgb(196, 134, 235); 
     transform: translateX(3px);
 }
+.inbox-msg{
+   width: 100%;
+    height: 60px;
+    background-color: rgb(245, 247, 247);
+    border: 1px solid transparent;
+    border-top: 1px solid rgb(190, 190, 190);
+    margin: 1px 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
