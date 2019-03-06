@@ -1,0 +1,80 @@
+<!doctype html> 
+<html>
+	<head>
+		<title>Epic Homepage</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width"> 
+        <link href="css/userpage.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+        <div id="user-wrapper">
+            <div id="top-bar">
+                <h1 id="user-header">EpicMail</h1> 
+                <form id="search-block" action="login.html">
+                    <button>Logout</button>
+                </form>    
+            </div> 
+            <div id="app-bar">
+                <ul class="app-bar-options">
+                    <li id="all-msg">All Messages</li>
+                    <li id="personal-msg">Personal Messages</li>
+                    <li id="group-msg">Group Messages</li>
+                </ul>
+            </div>
+            <div id="sidebar">
+                <button id="compose-btn" class="compose btn ">Compose</button>
+                <button id="inbox-btn" class="inbox btn">Inbox</button>
+                <button id="sent-mail-btn" class="sent-mail btn ">Sent Mail</button>
+                <button id="draft-btn" class="draft btn ">Drafts</button>
+                <button id="group-btn" class="group btn ">Group(s)</button>
+                <button id="admin-btn" class="admin btn ">Manage Group</button>
+            </div> 
+            <div id="sidebar-help"></div> 
+            <div class="main-tab">  
+                <div  id="inbox" class="inbox">
+                    <h3 class="location">Inbox</h3>
+                    <p  class="main-tab-opt">Your Inbox is empty</p>
+                </div> 
+                 <div  id="sent-mail" class="sent-mail">
+                     <h3 class="location">Sent mail</h3>
+                    <p class="main-tab-opt">Sent mail is empty </p>
+                </div>
+                 <div  id="drafts" class="draft">
+                     <h3 class="location">Drafts</h3>
+                    <p class="main-tab-opt">You don't have any saved message
+                     </p>
+                </div>
+                 <div  id="groups" class="group">
+                     <h3 class="location">Groups</h3>
+                    <p class="main-tab-opt">You don't belong to any group <a href="admin.html">click here to create group</a></p>
+                </div>
+                <div id="admin" class="admin">
+                    <h3 class="location">Admin page </h3>
+                    <button class="group-manage-btn btn" id="create-group">Create Group</button>
+                    <button  class="group-manage-btn btn" id="add-user">Add Users</button>
+                    <button  class="group-manage-btn btn" id="remove-user">Remove Users</button>
+                    <button  class="group-manage-btn btn" id="delete-group">Delete Group</button> 
+                </div>
+                <div id="compose-wrapper" class="compose"> 
+                     <div id="compose">
+                         <div id="compose-display-toggle"> 
+                             <button id="expand-btn" class=" toggle"><img src="../imgs/icons8_Enlarge_32.png"></button>
+                             <button id="close-btn" class="toggle"><img src="../imgs/close_32.png"></button>
+                             </div>
+                         <label>To:</label>
+                         <input type="text" placeholder="enter email here" id="email" autocomplete="off"> 
+                         <div id="email-suggestion">
+                             <p>dummymail suggestion</p>
+                         </div>
+                         <textarea id="message-box"></textarea>
+                         <div id="send-btn-wrapper">
+                             <button id="send"><img src="../imgs/send.ico"></button>
+                             </div> 
+                    </div>
+                </div>
+            </div> 
+        </div> 
+        <script src="js/user.js" type="text/javascript"></script> 
+	</body>
+</html>
