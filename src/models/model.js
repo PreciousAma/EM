@@ -12,7 +12,7 @@ class Controller{
     constructor(){
         this.controller = [];
     }
-    
+
     /**
    * 
    * @param {object} user object
@@ -60,6 +60,14 @@ class Controller{
    * @param {uuid} id
    * @returns {object} user object
    */
+    determinePerson(username) { 
+        return this.controller.find( name => name.email === username);
+    }
+       /**
+   * 
+   * @param {uuid} id
+   * @returns {object} user object
+   */
   determineUser(id) {
       //returns user object
     return this.controller.find( user => user.id == id);
@@ -83,14 +91,14 @@ class Controller{
    * @param {string} status
    * @returns {object} newMsg object
    */
-    createMessage(senderId, receiverId, message,subject,status){
+    createMessage(senderUsername, receiverUsername, message,subject,status){
         
-        const receiver = this.determineUser(receiverId);
-        const sender = this.determineUser(senderId);
+        const receiver = this.determinePerson(receiverUsername);
+        const sender = this.determinePerson(senderUsername);
         console.log(receiver, 'receiver');
         console.log(sender, 'sender')
         /*const receiverIndex = this.controller.indexOf(receiverId);*/
-        if(receiverId !== receiver.id) return false;
+        // if(receiverUsername !== receiver.email) return false;
         
         const newMsg = {
             id:uuid.v4(),
@@ -101,7 +109,6 @@ class Controller{
             status: status, //draft or sent
             messageId: uuid.v4(),
         }
-        
         status === 'send'? (receiver.inbox.push({received:newMsg,
                                                  senderId: sender.id,
                                                 }), 
@@ -116,8 +123,8 @@ class Controller{
    * @param {uuid} userId
    * @returns {array} inbox array
    */
-    inbox(userId){
-        const inboxMsg = this.determineUser(userId);
+    inbox(user){
+        const inboxMsg = this.determinePerson(user);
         return inboxMsg.inbox;
     }
     
@@ -126,12 +133,13 @@ class Controller{
    * @param {uuid} userId
    * @returns {array} sent array
    */
-    sent(userId){
-        const sentMsg = this.determineUser(userId);
+    sent(user){
+        const sentMsg = this.determinePerson(user);
         return sentMsg.sent;
     }
     
-     /**
+     
+    /**
    * 
    * @param {uuid} userId
    * @returns {array} sent array
@@ -140,6 +148,7 @@ class Controller{
         const draftMsg = this.determineUser(userId);
         return draftMsg.sent;
     } 
+
     
     /**
    * 

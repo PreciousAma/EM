@@ -14,20 +14,13 @@ app.post('/api/v1/auth/login', user.login);
 
 app.post('/api/v1/messages', user.createMsg ); 
 
-//test
-app.post('/api/v1/search/:id', user.search); 
-
-app.get('/api/v1/messages', (req, res)=>{
-    
-});
+app.get('/api/v1/messages', user.inbox);
 
 app.get('/api/v1/messages/unread', (req, res)=>{
     
 });
 
-app.get('/api/v1/messages/sent', (req, res)=>{
-    
-});
+app.get('/api/v1/messages/sent',user.sent);
 
 app.get('/api/v1/messages/:msgid', (req, res)=>{
     

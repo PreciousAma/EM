@@ -1,4 +1,4 @@
-var model = require('../models/model.js')
+var model = require('../models/model.js');
 
 const Controller = {
     
@@ -11,7 +11,6 @@ const Controller = {
     create(req, res) {
     if (!req.body.username && !req.body.firstname && !req.body.surname &&
 !req.body.password && !req.body.phonenumber && !req.body.confirmpass ){ 
-        console.log(req.body);
       return res.status(400).send({'message': 'All fields are required'})
     }
     const newUser = model.createUser(req.body); 
@@ -42,17 +41,46 @@ const Controller = {
     createMsg(req, res){
         const reqBody = req.body;
         
-        if(!reqBody.senderId && !reqBody.receiverId && !reqBody.msg && !reqBody.subject && !reqBody.status ){
+        if(!reqBody.senderEmail && !reqBody.receiverEmail && !reqBody.msg && !reqBody.subject && !reqBody.status ){
             return res.status(400).send({'message': 'All fields are required'})
-    }
-    const msg = model.createMessage(reqBody.senderId, reqBody.receiverId, reqBody.msg, reqBody.subject, reqBody.status)
+        }
+    const msg = model.createMessage(reqBody.senderEmail, reqBody.receiverEmail, reqBody.msg, reqBody.subject, reqBody.status) 
+    return res.status(200).send(msg)
     },
     search(req,res){
         const user = model.determineUser(req.pid);
         console.log(user, 'user');
         return res.status(200).send(user);
         
-    }
+    },
+
+    /**
+     * 
+     * @param {object} req 
+     * @param {object} res
+     * @returns {array} inbox 
+     */
+    inbox(req,res){
+        if(!req.body.user){
+            return res.status(400).send({'message': 'All fields are required'})
+        }
+        const maill = model.inbox(req.body.user); 
+        console.log(maill);
+        return res.status(201).send(maill)
+    },
+    /**
+     * 
+     * @param {object} req 
+     * @param {object} res
+     * @returns {array} sent messages 
+     */
+    sent(req,res){
+        if(!req.body.user){
+            return res.status(400).send({'message': 'All fields are required'})
+        }
+        const sentMsg = model.inbox(req.body.user);
+        res.status(201).send(sentMsg);
+    },
 }
 
 module.exports = Controller;
