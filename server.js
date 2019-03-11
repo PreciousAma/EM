@@ -30,5 +30,6 @@ app.get('/api/v1/messages/:msgid', (req, res)=>{
 app.delete('/api/v1/:msgid', (req, res)=>{
     
 });
+const port = process.env.PORT || 3000;
 
-app.listen(3000, ()=>console.log('app running on port ', 3000))
+app.listen(port, ()=>console.log(`app running on port ${port}`))
