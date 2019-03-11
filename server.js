@@ -7,7 +7,9 @@ app.use(express.json());
 
 app.use(express.urlencoded({extended:false}));
 //const urlEncoder = bodyParser.urlencoded({extended:false})
-
+app.post('/', (req,res)=>{
+    res.status(200).send('welcome to epic mail')
+})
 app.post('/api/v1/auth/signup', user.create); 
 
 app.post('/api/v1/auth/login', user.login);
