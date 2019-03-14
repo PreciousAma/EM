@@ -1,8 +1,8 @@
-
+require('custom-env').env(true);
 const uuid = require('uuid');
 const moment = require('moment');
 //const emitter = require('emitter');
-
+const jwt = require('jsonwebtoken');
 class Controller{
     
     /**
@@ -19,9 +19,12 @@ class Controller{
    * @returns {object} controller object
    */
     createUser(userData){
-        
+        const  username = userData.username;
+        const id = uuid.v4();
+        const token = jwt.sign({username,id}, process.env.SECRET);
         const newUser ={
-            id: uuid.v4(),
+            id: id,
+            token:token,
             email: userData.username || '',
             firstname: userData.firstname || '',
             lastname: userData.surname || '',
@@ -33,6 +36,7 @@ class Controller{
             draft:[],
             inbox:[],
             group:[],
+
         };
         this.controller.push(newUser);
         return newUser
@@ -47,17 +51,22 @@ class Controller{
            
         var userName = this.controller.find( name => name.email === username);
         var userPassword = this.controller.find(pass => pass.password === loginPassword);
-        console.log(userPassword, 'password');
-        console.log(userName, 'email');
         if(userName.id === userPassword.id){
-            return userName 
+            const id= userName.id;
+            const token = jwt.sign({username,id},process.env.SECRET);
+            return {
+                // userName
+                username,
+                id,
+                token
+            } 
         }
         return false;
     }
     
       /**
    * 
-   * @param {uuid} id
+   * @param {string} username
    * @returns {object} user object
    */
     determinePerson(username) { 
@@ -78,7 +87,7 @@ class Controller{
    * @returns {object} group object
    */
     determineGroup(id){
-         var admin = this.users.find(groups => groups.group.find(ids => ids.id === id)) 
+         var admin = this.controller.find(groups => groups.group.find(ids => ids.id === id)) 
         var group = admin.group;
         return group.find(member => member.id == id);
     }
@@ -95,25 +104,35 @@ class Controller{
         
         const receiver = this.determinePerson(receiverUsername);
         const sender = this.determinePerson(senderUsername);
-        console.log(receiver, 'receiver');
-        console.log(sender, 'sender')
         /*const receiverIndex = this.controller.indexOf(receiverId);*/
         // if(receiverUsername !== receiver.email) return false;
-        
+        const id = uuid.v4();
+        const time = moment.now();
+        const parentMsgId = uuid.v4();
+
         const newMsg = {
-            id:uuid.v4(),
-            createdOn: moment.now(),
+            id:id,
+            createdOn: time,
             subject:subject,
             message: message,
-            parentMessageId: uuid.v4(),
+            parentMessageId: parentMsgId,
             status: status, //draft or sent
-            messageId: uuid.v4(),
-        }
-        status === 'send'? (receiver.inbox.push({received:newMsg,
-                                                 senderId: sender.id,
-                                                }), 
-                            sender.sent.push({sent:newMsg,
-                                             receiverId:receiver.id})): sender.draft.push(newMsg);
+            senderId: sender.id,
+            receiverId:receiver.id
+        };
+
+        const receivedMsg = {
+            id:id,
+            createdOn: time,
+            subject:subject,
+            message: message,
+            parentMessageId: parentMsgId,
+            status: 'unread',
+            senderId: sender.id,
+            receiverId:receiver.id
+        };
+        status === 'send'? (receiver.inbox.push(receivedMsg), 
+                            sender.sent.push(newMsg)): sender.draft.push(newMsg);
         sender.contacts.push(receiver.email);
         return newMsg
     }
@@ -123,8 +142,8 @@ class Controller{
    * @param {uuid} userId
    * @returns {array} inbox array
    */
-    inbox(user){
-        const inboxMsg = this.determinePerson(user);
+    inbox(userId){
+        const inboxMsg = this.determineUser(userId);
         return inboxMsg.inbox;
     }
     
@@ -133,8 +152,9 @@ class Controller{
    * @param {uuid} userId
    * @returns {array} sent array
    */
-    sent(user){
-        const sentMsg = this.determinePerson(user);
+    sent(userId){
+
+        const sentMsg = this.determineUser(userId);
         return sentMsg.sent;
     }
     
@@ -147,8 +167,62 @@ class Controller{
     draft(userId){
         const draftMsg = this.determineUser(userId);
         return draftMsg.sent;
-    } 
+    }
+        /**
+     * 
+     * @param {uuid} userId
+     * @returns {object} unread object  
+     */
+    unread(userId){
+        const user = this.determineUser(userId);
+        var unread = user.inbox.filter(msg => msg.status=== 'unread')
+        
+        return unread;
+    }
 
+    /**
+     * 
+     * @param {uuid} userId
+     * @param {uuid} msgId
+     * @returns {object} message object  
+     */
+    message(userId, msgid){
+        let allmsg =[];
+        const user = this.determineUser(userId);
+        allmsg = allmsg.concat(user.inbox, user.sent, user.draft);
+        let theMsg = allmsg.find(msg=> msg.id===msgid);
+        if(theMsg.status === 'unread'){
+            theMsg.status = 'read';
+        }
+        return theMsg;
+    }
+        /**
+     * 
+     * @param {uuid} userId
+     * @param {uuid} msgId
+     * @returns {object} delete msg object  
+     */
+    delete(userId, msgid){
+        const user = this.determineUser(userId);
+        let allmsg = allmsg.concat(user.inbox, user.sent, user.draft);
+        let msgToDel = allmsg.find(msg=>msg.id===msgid);
+        if(user.inbox.includes(msgToDel)){
+            let index = user.inbox.indexOf(msgToDel);
+            user.inbox.splice(index,1);
+            return user.inbox;
+        }
+        else if(user.sent.includes(msgToDel)){
+            let index = user.sent.indexOf(msgToDel);
+            user.sent.splice(index,1);
+            return user.sent;
+        }
+        else if(user.draft.includes(msgToDel)){
+            let index = user.draft.indexOf(msgToDel);
+            user.draft.splice(index,1);
+            return draft.inbox;
+        }
+        else return false;
+    }
     
     /**
    * 

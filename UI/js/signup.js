@@ -34,7 +34,7 @@ var UIcontroller = (function(){
             
             if( !firstname =='' && !surname ==''){
                if(!(username.length<4)){ 
-                if(!(isNaN(Digit)) && Digit !==''){
+                if( Digit !=='' && Digit.length >5){
                    if( !(pwd < 6) ){
                     if(pwd===confirmPwd){
                        if(_signupAgreement.checked){
@@ -89,7 +89,16 @@ var controller = (function(UIctrl, ftCtrl){
 //            UIctrl.submitBtn.click;
             } 
 });
+  
+UIctrl.phoneNumber.addEventListener('keypress', e=>{
+    var charCode = (e.which)? e.which : event.keyCode;
+    if (charCode==43) return true;
+    else if(charCode>31 && (charCode<48 || charCode > 57)){
+        e.preventDefault(); 
+        return false;
+    }
     
-    
-    
+    return true;
+});
+
 })(UIcontroller,featureController); 

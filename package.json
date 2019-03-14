@@ -4,7 +4,7 @@
   "description": "the app is used to send and receive mail",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1" 
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,9 @@
     "mocha": "^6.0.2"
   },
   "dependencies": {
+    "custom-env": "^1.0.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.0",
     "moment": "^2.24.0",
     "uuid": "^3.3.2"
   }

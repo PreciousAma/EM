@@ -3,7 +3,7 @@
     margin: 0;  
 }
 body{
-    background-color: skyblue;
+    background-color: rgb(88, 187, 226);;
     color: white;
 }
 /*styling for singup heading*/
@@ -19,9 +19,12 @@ body{
 #wrapper{
     width: 70%;
     border: solid 1px transparent;
+    background-color: rgba(0,0,0, 0.1);
     margin: 10px auto;
     height: 480px;
     padding-top: 40px;
+    min-width: 525px;
+    border-radius: 10px;
 }
 /*styling for input elements with class inputs*/
 .inputs{
@@ -31,26 +34,27 @@ body{
     height: 40px;
     border: solid 1px transparent;
     border-radius: 10px 0px;
-    border-bottom: 2px solid rgb(134, 139, 235);
+    border-bottom: 2px solid  rgb(128, 89, 227);;
     outline: none;
     font-size: 14px;
     padding-left:  20px;
     font-weight: bold;
-    color: rgb(134, 139, 235);
+    color: rgb(128, 89, 227);;
 } 
 .inputs::placeholder{
-    color: rgb(134, 139, 235);
+    color: rgb(128, 89, 227);;
 }
 .inputs:hover, #wrapper .inputs:focus{
     transform: translateY(2px);
-   border-bottom: 2px solid rgb(196, 134, 235);
+   /* border-bottom: 2px solid rgb(196, 134, 235); */
     transition: 0.5s;
 }
 /*container for signup agreement*/
 #agreement-wrapper{
     display: block;
-margin: 0px auto;
-    width: 390px;
+    margin: 0px auto;
+    width: 80%;
+    text-align: center;
 }
 /*styling for all buttons*/
 button{
@@ -64,24 +68,47 @@ button{
     font-family: 'Georgia', cursive; 
     letter-spacing: 1.5px;
     color: white;
-    background-color: rgb(134, 139, 235);
+    background-color: rgb(128, 89, 227);
+    
 }
 button:hover, button:focus{
     transform: translateY(2px);
     transition: 0.5s;
-    background-color: rgb(196, 134, 235);
+    /* background-color: rgb(196, 134, 235); */
 }
 /*content wrapper for inputs on signing page*/
 #content-wrapper{
-    height: 320px;
+    height: 420px;
     margin: 0px auto;
-    width: 80%;
+    width: 60%;
+    min-width: 392px;
+    background-color: rgba(0,0,0, 0.1);
+    padding-top: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-top: 18vh;
 }
 /*styling for singup heading*/
-#epic-head{
+#about{
     text-align: center;
+    margin: 20px auto;
+}
+#head-wrapper{
+    position: relative;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+a.landing-link{
+    
+    text-decoration: none;
+    color: white;
+    
+}
+a #epic-head{
+    text-align: left;
     font-family:  cursive; 
-    margin:150px 40px 0px;
+    /* margin:150px 40px 0px; */
     font-size: 36px;
     letter-spacing: 1.5px; 
 }
@@ -103,6 +130,8 @@ button:hover, button:focus{
     top: -206px;
     left:135.5px; 
     width: 500px;
+    width: 80%;
+    min-width: 561px;
     height: 200px;
     border-radius: 10px;
     background-color: rgba(0,0,0,1);
@@ -122,8 +151,90 @@ button:hover, button:focus{
     border:15px solid transparent ;
     border-top-color: rgba(0,0,0,1);
     bottom: -30px;
-    left: 50%;
+    left: 45%;
 }
 .forgot-pass-container p{
     font-family:  cursive; 
+}
+/* landing-page */
+
+nav#head-wrapper{
+    margin: 1vh 5px;
+}
+nav a #epic-head{
+    display: inline;
+    /* margin-right: 60%; */
+}
+nav .btn{
+    display: inline;
+    margin: 0;
+}
+#main-wrapper{
+    overflow: hidden;
+}
+#landing-wrapper{
+    width: 90vw;
+    height: 70vh;
+    margin: 0 auto;
+    margin-top:10vh;
+    text-align: center;
+    background-color: rgba(0,0,0,0.1);
+    font-size: 32px;
+    letter-spacing: 1.5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+#head-wrapper div{
+    float: right;
+    display: inline-block;
+    position: relative;
+    right: 9px;
+}
+#head-wrapper div::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#head-wrapper div a{
+    text-decoration: none;
+}
+/* Screen responsiveness */
+@media screen and (max-width:532px){
+    #wrapper{
+        
+        height:100vh;
+    }
+    #wrapper .inputs{
+        width: 70vh;
+    }
+}
+@media screen and (max-width:360px){
+    #wrapper{
+        
+       margin: 10vmax auto;
+    }
+}
+@media screen and (max-width:566px){
+    #landing-wrapper{
+        font-size: 16px;
+    }
+    a #epic-head{
+        font-size: 26px;
+    }
+    #head-wrapper .btn{
+        display: inline;
+        margin: 5px auto;
+        width: 100px;
+        height: 40px;
+        letter-spacing: 1.5px;
+        
+    }
+}
+@media  screen and (max-width:344px){
+    #head-wrapper div{
+        float: none;
+        margin: auto 10px;
+        display: block;
+        left: 23px;
+    }
 }
